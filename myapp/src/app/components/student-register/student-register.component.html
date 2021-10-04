@@ -1,0 +1,73 @@
+
+<div class="content-wrapper" >
+    <section class="content-header">
+        <h1>Student Form</h1>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <flash-messages></flash-messages>
+                    </div>
+                </div>
+                <div class="box box-primary">
+                    <form  [formGroup]="userForm">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Full Name</label>
+                                <input type="text" class="form-control" formControlName="fullname" id="fullname" [(ngModel)]="fullname" placeholder="Enter Your Full Name" [ngClass]="{ 'is-invalid': submitted && validation.fullname.errors }">
+                                <div *ngIf="submitted && validation.fullname.errors" class="invalid-feedback">
+                                    <div *ngIf="validation.fullname.errors.required">First Name is required</div>
+                                    <div *ngIf="validation.fullname.errors.pattern">Only Enter Alphabate Value</div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Teacher Name</label>
+                                <select class="form-control" formControlName="teacher_id" id="teacher_id" [(ngModel)]="teacher_id" [ngClass]="{ 'is-invalid': submitted && validation.teacher_id.errors }">
+                                        <option *ngFor="let teacher of teachertabledata" value={{teacher._id}}>{{teacher.fullname}}</option>
+                                </select>
+                                <div *ngIf="submitted && validation.teacher_id.errors" class="invalid-feedback">
+                                    <div *ngIf="validation.teacher_id.errors.required">First Name is required</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="text" class="form-control" formControlName="email_id" id="email_id" [(ngModel)]="email_id" placeholder="Enter Your Email Id" [ngClass]="{ 'is-invalid': submitted && validation.email_id.errors }">
+                                <div *ngIf="submitted && validation.email_id.errors" class="invalid-feedback">
+                                    <div *ngIf="validation.email_id.errors.required">Email Id is required</div>
+                                    <div *ngIf="validation.email_id.errors.email">Email must be a valid email address</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Mobile Number</label>
+                                <input type="text" class="form-control" formControlName="mobile_number" id="mobile_number" [(ngModel)]="mobile_number" placeholder="Enter Your Mobile Number" [ngClass]="{ 'is-invalid': submitted && validation.mobile_number.errors }">
+                                <div *ngIf="submitted && validation.mobile_number.errors" class="invalid-feedback">
+                                    <div *ngIf="validation.mobile_number.errors.required">Mobile Number is required</div>
+                                    <div *ngIf="validation.mobile_number.errors.minlength">Mobile Number must be at least 10 digit</div>
+                                    <div *ngIf="validation.mobile_number.errors.maxlength">Mobile Number must be at least 10 digit</div>
+                                    <div *ngIf="validation.mobile_number.errors.pattern">Invalid Mobile Number</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Address</label>
+                                <input type="text" class="form-control" formControlName="address" id="address" [(ngModel)]="address" placeholder="Enter Your address" [ngClass]="{ 'is-invalid': submitted && validation.address.errors }">
+                                <div *ngIf="submitted && validation.address.errors" class="invalid-feedback">
+                                    <div *ngIf="validation.address.errors.required">Address is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="box-footer">
+                            <button type="button" (click)="insertStudentData()" class="btn btn-primary">Save</button>&nbsp;
+                            <button type="button"  (click)="resetField()" class="btn btn-warning">Refresh</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </section>
+        
+</div>
